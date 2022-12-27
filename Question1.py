@@ -32,9 +32,9 @@ def fetchdata_constructdb():
 
     #SQL query for fetching top 25 gainers on 27th December 2022
     query = """ 
-                SELECT SYMBOL, gainpercentage 
+                SELECT *
                 FROM ( 
-                     SELECT SYMBOL, ((\" CLOSE_PRICE\" - \" OPEN_PRICE\") / \" OPEN_PRICE\")*100 as gainpercentage 
+                     SELECT bhavcopy_table.*, ((\" CLOSE_PRICE\" - \" OPEN_PRICE\") / \" OPEN_PRICE\")*100 as gainpercentage 
                      FROM bhavcopy_table
                      ) 
                 order by gainpercentage desc limit 25 

@@ -20,10 +20,10 @@ latest_bhavcopy.to_sql('latest_bhavcopy_table', engine)
 
 # SQL query for fetching top 25 gainers between oldest and latest days
 query = """
-            select SYMBOL , gainpercentage
+            select *
             from 
             (
-            SELECT oldest.SYMBOL as SYMBOL, ((latest.\" CLOSE_PRICE\" - oldest.\" OPEN_PRICE\")/oldest.\" OPEN_PRICE\")*100 as gainpercentage 
+            SELECT oldest.SYMBOL as SYMBOL, oldest.\" SERIES\" as SERIES, ((latest.\" CLOSE_PRICE\" - oldest.\" OPEN_PRICE\")/oldest.\" OPEN_PRICE\")*100 as gainpercentage 
             from   
               (select SYMBOL, \" SERIES\", \" OPEN_PRICE\" from oldest_bhavcopy_table) oldest
               JOIN

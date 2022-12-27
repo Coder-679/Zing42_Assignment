@@ -27,12 +27,12 @@ for filename in os.listdir(directory):
 
     # SQL query for fetching top 25 gainers on current date
     query = """ 
-                SELECT SYMBOL, gainpercentage 
+               SELECT *
                 FROM ( 
-                     SELECT SYMBOL, ((\" CLOSE_PRICE\" - \" OPEN_PRICE\") / \" OPEN_PRICE\")*100 as gainpercentage 
+                     SELECT bhavcopy_table.*, ((\" CLOSE_PRICE\" - \" OPEN_PRICE\") / \" OPEN_PRICE\")*100 as gainpercentage 
                      FROM bhavcopy_table
                      ) 
-                order by gainpercentage desc limit 25  
+                order by gainpercentage desc limit 25 
             """
     res = pd.read_sql_query(query, engine)
 
